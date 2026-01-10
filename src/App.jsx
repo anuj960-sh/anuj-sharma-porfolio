@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Code, Briefcase, Mail, Github, Linkedin, Twitter, Award, Sparkles, Terminal, Database, Globe, Cpu } from 'lucide-react';
+import { Code, Mail, Github, Linkedin, Twitter, Sparkles, Terminal, Database, Globe, Cpu } from 'lucide-react';
 
 export default function Portfolio() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [activeSection, setActiveSection] = useState('home');
-  const [isVisible, setIsVisible] = useState({});
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -16,28 +14,28 @@ export default function Portfolio() {
 
   const projects = [
     {
+      title: "Smart Attendance System",
+      desc: "AI-powered face recognition attendance system with real-time tracking",
+      tech: ["Python", "OpenCV", "Flask", "SQLite"],
+      gradient: "from-violet-500 to-purple-500"
+    },
+    {
+      title: "TMS Project",
+      desc: "Task Management System with real-time collaboration features",
+      tech: ["React", "Node.js", "MongoDB", "Socket.io"],
+      gradient: "from-blue-500 to-indigo-500"
+    },
+    {
       title: "E-Commerce Platform",
       desc: "Full-stack MERN application with payment integration",
       tech: ["React", "Node.js", "MongoDB", "Stripe"],
       gradient: "from-purple-500 to-pink-500"
     },
     {
-      title: "Social Media Dashboard",
-      desc: "Real-time analytics dashboard with interactive charts",
-      tech: ["Next.js", "PostgreSQL", "GraphQL", "D3.js"],
-      gradient: "from-blue-500 to-cyan-500"
-    },
-    {
-      title: "AI Chat Application",
-      desc: "Real-time chat with AI integration and modern UI",
-      tech: ["React", "WebSocket", "OpenAI", "Tailwind"],
-      gradient: "from-orange-500 to-red-500"
-    },
-    {
-      title: "Task Management System",
-      desc: "Collaborative project management tool",
-      tech: ["Vue.js", "Express", "MySQL", "Redis"],
-      gradient: "from-green-500 to-emerald-500"
+      title: "Real-Time Chat App",
+      desc: "WebSocket-based chat with file sharing and group messaging",
+      tech: ["Socket.io", "React", "Express", "Redis"],
+      gradient: "from-cyan-500 to-blue-500"
     }
   ];
 
@@ -134,13 +132,93 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* 3D Scrolling Languages Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto mb-16 text-center px-4">
+          <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 text-transparent bg-clip-text">
+            Tech Stack
+          </h2>
+          <p className="text-gray-400 text-lg">Languages & Technologies I Work With</p>
+        </div>
+
+        {/* Scrolling Container */}
+        <div className="relative">
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-10" />
+          
+          <div className="flex gap-6 animate-scroll-fast">
+            {[...skills, ...skills, ...skills].map((skill, i) => (
+              <div 
+                key={i}
+                className="group relative flex-shrink-0 w-44 h-44 perspective-1000 cursor-pointer"
+                onClick={(e) => {
+                  const card = e.currentTarget;
+                  card.classList.add('clicked');
+                  setTimeout(() => card.classList.remove('clicked'), 600);
+                }}
+              >
+                <div 
+                  className="relative w-full h-full transition-all duration-700 transform-gpu group-hover:scale-110 group-hover:rotate-y-12"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  {/* Glowing Background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-all duration-700" />
+                  
+                  {/* 3D Card */}
+                  <div className="relative w-full h-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-full border border-white/20 group-hover:border-white/40 transition-all duration-700 overflow-hidden shadow-2xl">
+                    {/* Animated Border Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/20 group-hover:to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    
+                    {/* Click Lightning Effect */}
+                    <div className="absolute inset-0 pointer-events-none lightning-effect">
+                      <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-cyan-400 via-blue-500 to-transparent opacity-0" />
+                    </div>
+                    
+                    {/* Shine Effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                    </div>
+                    
+                    <div className="relative w-full h-full flex flex-col items-center justify-center p-6">
+                      <skill.icon 
+                        className="w-16 h-16 mb-3 text-purple-400 group-hover:text-pink-400 transition-all duration-700 transform group-hover:scale-125 group-hover:rotate-12"
+                        style={{ filter: 'drop-shadow(0 0 20px rgba(168,85,247,0.5))' }}
+                      />
+                      <p className="text-base font-bold text-white text-center group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-300 group-hover:to-pink-300 group-hover:bg-clip-text transition-all duration-300">
+                        {skill.name}
+                      </p>
+                      <div className="mt-2 text-xs text-gray-400 font-semibold">{skill.level}%</div>
+                      
+                      {/* Particle Effect */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                        {[...Array(5)].map((_, idx) => (
+                          <div
+                            key={idx}
+                            className="absolute w-1 h-1 bg-white rounded-full animate-particle"
+                            style={{
+                              left: `${25 + idx * 15}%`,
+                              top: `${35 + (idx % 2) * 30}%`,
+                              animationDelay: `${idx * 0.15}s`
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section with Progress */}
       <section className="relative py-32 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-bold text-center mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">
-            Technical Skills
+            Proficiency Levels
           </h2>
-          <p className="text-center text-gray-400 mb-16 text-lg">Technologies I work with</p>
+          <p className="text-center text-gray-400 mb-16 text-lg">Expertise breakdown</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skills.map((skill, i) => (
@@ -173,31 +251,69 @@ export default function Portfolio() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, i) => (
-              <div key={i} className="group relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 overflow-hidden transform hover:scale-105 transition-all duration-500">
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                <div className="relative">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${project.gradient} rounded-2xl mb-6 flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-500`}>
-                    <Code className="w-8 h-8" />
+              <div 
+                key={i} 
+                className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:border-white/40 overflow-hidden transform hover:scale-105 hover:-translate-y-4 transition-all duration-700 perspective-1000 cursor-pointer"
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
+                }}
+                onClick={(e) => {
+                  const card = e.currentTarget;
+                  card.classList.add('project-clicked');
+                  setTimeout(() => card.classList.remove('project-clicked'), 800);
+                }}
+              >
+                {/* Animated Background Gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-700`} />
+                
+                {/* Click Lightning Effect - Bottom to Top */}
+                <div className="absolute inset-0 pointer-events-none lightning-effect-project">
+                  <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-cyan-400 via-purple-500 to-transparent opacity-0" />
+                  <div className="absolute bottom-0 left-1/4 w-1 h-full bg-gradient-to-t from-white via-cyan-400 to-transparent opacity-0 blur-sm" />
+                  <div className="absolute bottom-0 right-1/4 w-1 h-full bg-gradient-to-t from-white via-pink-400 to-transparent opacity-0 blur-sm" />
+                </div>
+                
+                {/* Glowing Effect */}
+                <div className={`absolute -inset-1 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-40 blur-2xl transition-opacity duration-700`} />
+                
+                {/* Shine Effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                </div>
+                
+                <div className="relative transform group-hover:translate-z-20 transition-transform duration-700">
+                  <div className={`w-20 h-20 bg-gradient-to-br ${project.gradient} rounded-3xl mb-6 flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-700 shadow-2xl`}>
+                    <Code className="w-10 h-10" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                  <p className="text-gray-400 mb-6">{project.desc}</p>
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 group-hover:bg-clip-text transition-all duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-400 mb-6 leading-relaxed">{project.desc}</p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.map((tech, j) => (
-                      <span key={j} className="px-4 py-2 bg-white/10 rounded-full text-sm border border-white/20">
+                      <span key={j} className="px-4 py-2 bg-white/10 backdrop-blur-xl rounded-full text-sm border border-white/20 hover:border-white/40 transition-all duration-300 font-semibold">
                         {tech}
                       </span>
                     ))}
                   </div>
                   <div className="flex gap-4">
-                    <a href="#" className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors">
+                    <a href="https://github.com/anuj960-sh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors font-semibold">
                       <Github className="w-5 h-5" />
                       Code
                     </a>
-                    <a href="#" className="flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors">
+                    <a href="#" className="flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors font-semibold">
                       <Globe className="w-5 h-5" />
                       Live Demo
                     </a>
                   </div>
+                </div>
+                
+                {/* 3D Depth Lines */}
+                <div className="absolute bottom-0 right-0 w-32 h-32 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
+                  <div className="absolute inset-0 border-r-2 border-b-2 border-white/30 rounded-br-3xl" />
+                  <div className="absolute inset-2 border-r-2 border-b-2 border-white/20 rounded-br-3xl" />
+                  <div className="absolute inset-4 border-r-2 border-b-2 border-white/10 rounded-br-3xl" />
                 </div>
               </div>
             ))}
@@ -230,9 +346,9 @@ export default function Portfolio() {
               <label className="block text-sm font-semibold mb-2 text-gray-300">Message</label>
               <textarea className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 h-32 focus:outline-none focus:border-purple-500 transition-colors resize-none" placeholder="Your message..." />
             </div>
-            <button className="w-full md:w-auto px-12 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold transform hover:scale-105 transition-all duration-300">
+            <a href="mailto:anujdev87@gmail.com" className="w-full md:w-auto px-12 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 inline-block">
               Send Message
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -254,6 +370,90 @@ export default function Portfolio() {
         .animate-gradient {
           background-size: 200% 200%;
           animation: gradient 3s ease infinite;
+        }
+        @keyframes scroll-fast {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.33%); }
+        }
+        .animate-scroll-fast {
+          animation: scroll-fast 15s linear infinite;
+        }
+        .animate-scroll-fast:hover {
+          animation-play-state: paused;
+        }
+        @keyframes particle {
+          0% { transform: translateY(0) scale(1); opacity: 1; }
+          100% { transform: translateY(-40px) scale(0); opacity: 0; }
+        }
+        .animate-particle {
+          animation: particle 1.2s ease-out infinite;
+        }
+        @keyframes lightning {
+          0% { 
+            opacity: 0; 
+            transform: translateY(20px);
+          }
+          10% { 
+            opacity: 0.8; 
+            transform: translateY(0);
+          }
+          20% { 
+            opacity: 0.3; 
+          }
+          30% { 
+            opacity: 0.9; 
+          }
+          100% { 
+            opacity: 0; 
+            transform: translateY(-100%);
+          }
+        }
+        @keyframes lightning-project {
+          0% { 
+            opacity: 0; 
+            transform: translateY(50px) scaleY(0.5);
+          }
+          15% { 
+            opacity: 1; 
+            transform: translateY(0) scaleY(1);
+          }
+          30% { 
+            opacity: 0.4; 
+          }
+          45% { 
+            opacity: 0.9; 
+          }
+          100% { 
+            opacity: 0; 
+            transform: translateY(-100%) scaleY(1.5);
+          }
+        }
+        .clicked .lightning-effect > div {
+          animation: lightning 0.6s ease-out;
+        }
+        .project-clicked .lightning-effect-project > div {
+          animation: lightning-project 0.8s ease-out;
+        }
+        .project-clicked {
+          transform: scale(1.08) translateY(-8px) !important;
+          box-shadow: 0 30px 80px rgba(168,85,247,0.4), 0 0 40px rgba(236,72,153,0.3) !important;
+        }
+        .clicked {
+          transform: scale(1.15) rotateY(15deg) !important;
+          box-shadow: 0 25px 50px rgba(168,85,247,0.5) !important;
+        }
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .rotate-y-12 {
+          transform: rotateY(12deg);
+        }
+        .transform-gpu {
+          transform: translateZ(0);
+          backface-visibility: hidden;
+        }
+        .translate-z-20 {
+          transform: translateZ(20px);
         }
       `}</style>
     </div>
