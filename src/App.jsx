@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Code, Mail, Github, Linkedin, Twitter, Sparkles, Terminal, Database, Globe, Cpu } from 'lucide-react';
 
+
 export default function Portfolio() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
